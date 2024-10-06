@@ -13,17 +13,17 @@ export const connectDB=async ()=>{
         dataBaseConnections.isConnected = response.connections[0].readyState
             const connection = mongoose.connection
             
-            connection.on('connection',(stream)=>{
+            connection.on('connection',()=>{
                 console.log("Connected to database from  connectDB")
             })
     
-            connection.on('error',(error:any)=>{
-                console.log("Error occured while making a connection",error.message)
+            connection.on('error',(error)=>{
+                console.log("Error occured while making a connection",error)
                 process.exit()
             })
         
-    } catch (error:any) {
-        console.log(`Error from "db.ts", while connecting to database`,error.message)
+    } catch (error) {
+        console.log(`Error from "db.ts", while connecting to database`,error)
         process.exit(1)
         // console.log(`Error from "db.ts", while connecting to database`,error.message)
     }

@@ -15,6 +15,7 @@ export const authOptions:NextAuthOptions = {
                 email: { label: "Email", type: "text", placeholder: "Enter your email" },
                 password: { label: "Password", type: "password", placeholder:"Enter your password" }
             },
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             async authorize(credentials:any):Promise<any>{
 
                 // console.log(credentials)
@@ -37,10 +38,12 @@ export const authOptions:NextAuthOptions = {
                     }
                     // console.log(findingUser, "after password matching")
                     return findingUser
-                } catch (error:any) {
+                } catch (error) {
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore
                     throw new Error(error)
-                    console.log("Errror from options in next js",error.message)
-                    return (`Errror from options in next js ${error.message}`)
+                    console.log("Errror from options in next js",error)
+                    return (`Errror from options in next js ${error}`)
                     return null
                 }
             }
@@ -57,7 +60,7 @@ export const authOptions:NextAuthOptions = {
             
             return token
         },
-        async session({session,token,user}) {
+        async session({session,token}) {
 
             if(token){
                 session.user._id = token._id,
@@ -66,7 +69,7 @@ export const authOptions:NextAuthOptions = {
             }
             return session
         },
-        async redirect({url,baseUrl}){
+        async redirect({baseUrl}){
             return baseUrl
         }
     },

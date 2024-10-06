@@ -1,7 +1,7 @@
-import { authOptions } from "@/app/api/auth/[...nextauth]/options";
+// import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import { connectDB } from "@/dbConfig/db";
 import PrivateJobModel from "@/models/privateJobModal";
-import { getServerSession } from "next-auth";
+// import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
